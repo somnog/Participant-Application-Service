@@ -1,0 +1,35 @@
+import { IsOptional, IsString, IsInt, Min, IsEnum } from 'class-validator';
+import { Transform } from 'class-transformer';
+
+enum ApplicationStatus {
+  pending = 'pending',
+  approved = 'approved',
+  rejected = 'rejected',
+  enrolled = 'enrolled',
+}
+
+export class QueryApplicationDto {
+  @IsOptional()
+  @IsEnum(ApplicationStatus)
+  status?: ApplicationStatus;
+
+  @IsOptional()
+  @IsString()
+  workshopId?: string;
+
+  @IsOptional()
+  @IsString()
+  track?: string;
+
+  @IsOptional()
+  @Transform(({ value }) => parseInt(value, 10))
+  @IsInt()
+  @Min(1)
+  page?: number = 1;
+
+  @IsOptional()
+  @Transform(({ value }) => parseInt(value, 10))
+  @IsInt()
+  @Min(1)
+  limit?: number = 10;
+}

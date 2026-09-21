@@ -1,0 +1,16 @@
+{
+  "name": "somnog-ems",
+  "version": "0.0.1",
+  "description": "SomNOG Event Management System - Monorepo",
+  "private": true,
+  "license": "UNLICENSED",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "build:service": "npm run build --workspace=participant-application-service",
+    "build:gateway": "npm run build --workspace=gateway",
+    "start:service": "npm run start:dev --workspace=participant-application-service",
+    "start:gateway": "npm run start:dev --workspace=gateway"
+  }
+}
